@@ -71,4 +71,13 @@ class Movie {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
     }
   }
+
+  String getBackdropImg() {
+    if (backdropPath == null) {
+      return 'https://cdn11.bigcommerce.com/s-hcp6qon/stencil/01eb2250-b30a-0137-ba33-0242ac110046/icons/icon-no-image.svg'; 
+    }
+    else {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    }
+  }
 }
