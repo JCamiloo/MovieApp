@@ -9,6 +9,7 @@ class MoviesProvider {
   String _url = 'api.themoviedb.org';
   String _language = 'en-EN';
   int _popularsPage = 0;
+  bool _loadingPopulars = false;
   List<Movie> _populars = new List();
   final _popularsStreamCtrl = StreamController<List<Movie>>.broadcast();
 
@@ -36,6 +37,8 @@ class MoviesProvider {
   }
 
   Future<List<Movie>> getPopularMovies() async {
+    if (_loadingPopulars) return [];
+    _loadingPopulars = true;
     _popularsPage++;
 
     final url = Uri.https(_url, '3/movie/popular', {
@@ -47,6 +50,7 @@ class MoviesProvider {
     final response = await _executeRequest(url);
     _populars.addAll(response);
     popularsSink(_populars);
+    _loadingPopulars = false;
     return response;
   }
 }

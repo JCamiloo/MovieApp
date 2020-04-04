@@ -4,21 +4,28 @@ import 'package:movies/src/models/movie_model.dart';
 class CardCarousel extends StatelessWidget {
 
   final List<Movie> movies;
+  final _pageCtrl = new PageController(
+    initialPage: 1,
+    viewportFraction: 0.3
+  );
+  final Function nextPage;
 
-  CardCarousel({@required this.movies});
+  CardCarousel({@required this.movies, @required this.nextPage});
 
   @override
   Widget build(BuildContext context) {
 
     final _screenSize = MediaQuery.of(context).size;
+    _pageCtrl.addListener(() {
+      if (_pageCtrl.position.pixels >= _pageCtrl.position.maxScrollExtent - 200) {
+        nextPage();
+      }
+    });
 
     return Container(
       height: _screenSize.height * 0.25,
       child: PageView(
-        controller: PageController(
-          initialPage: 1,
-          viewportFraction: 0.3
-        ),
+        controller: _pageCtrl,
         children: _cards(context),
       ),
     );
