@@ -24,10 +24,36 @@ class CardCarousel extends StatelessWidget {
 
     return Container(
       height: _screenSize.height * 0.25,
-      child: PageView(
+      child: PageView.builder(
         controller: _pageCtrl,
-        children: _cards(context),
+        itemCount: movies.length,
+        itemBuilder: (context, i) => _card(context, movies[i]),
       ),
+    );
+  }
+
+  Widget _card(BuildContext context, Movie movie) {
+    return Container(
+      margin: EdgeInsets.only(right: 15.0),
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: FadeInImage(
+              image: NetworkImage(movie.getPosterImg()),
+              placeholder: AssetImage('assets/img/no-image.jpg'),
+              fit: BoxFit.cover,
+              height: 160.0,
+            ),
+          ),
+          SizedBox(height: 5.0),
+          Text(
+            movie.title, 
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.caption,
+          )
+        ],
+      )
     );
   }
 
