@@ -25,6 +25,7 @@ class CardCarousel extends StatelessWidget {
     return Container(
       height: _screenSize.height * 0.25,
       child: PageView.builder(
+        pageSnapping: false,
         controller: _pageCtrl,
         itemCount: movies.length,
         itemBuilder: (context, i) => _card(context, movies[i]),
