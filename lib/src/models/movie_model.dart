@@ -64,8 +64,8 @@ class Movie {
   }
 
   String getPosterImg() {
-    if (posterPath == null) {
-      return 'https://cdn11.bigcommerce.com/s-hcp6qon/stencil/01eb2250-b30a-0137-ba33-0242ac110046/icons/icon-no-image.svg'; 
+    if (posterPath == null || posterPath.contains('.svg')) {
+      return 'https://isabelpaz.com/wp-content/themes/nucleare-pro/images/no-image-box.png'; 
     }
     else {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
@@ -74,7 +74,7 @@ class Movie {
 
   String getBackdropImg() {
     if (backdropPath == null) {
-      return 'https://cdn11.bigcommerce.com/s-hcp6qon/stencil/01eb2250-b30a-0137-ba33-0242ac110046/icons/icon-no-image.svg'; 
+      return 'https://isabelpaz.com/wp-content/themes/nucleare-pro/images/no-image-box.png'; 
     }
     else {
       return 'https://image.tmdb.org/t/p/w500/$backdropPath';
