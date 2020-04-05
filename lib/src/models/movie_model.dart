@@ -14,6 +14,8 @@ class Movies {
 }
 
 class Movie {
+
+  String uniqueId;
   int voteCount;
   int id;
   bool video;
@@ -64,7 +66,7 @@ class Movie {
   }
 
   String getPosterImg() {
-    if (posterPath == null || posterPath.contains('.svg')) {
+    if (posterPath == null) {
       return 'https://isabelpaz.com/wp-content/themes/nucleare-pro/images/no-image-box.png'; 
     }
     else {

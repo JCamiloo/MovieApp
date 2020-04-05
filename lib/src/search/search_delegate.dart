@@ -51,7 +51,7 @@ class DataSearch extends SearchDelegate {
                 subtitle: Text(snapshot.data[i].overview, overflow: TextOverflow.ellipsis),
                 onTap: () {
                   close(context, null);
-                  // snapshot.data[i].uniqueId = '';
+                  snapshot.data[i].uniqueId = '';
                   Navigator.pushNamed(context, 'detail', arguments: snapshot.data[i]);  
                 },
               );
